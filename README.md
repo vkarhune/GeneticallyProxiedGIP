@@ -12,18 +12,19 @@ The documentation of R package 'mrpipe' is under construction, but the package c
 devtools::install_github("vkarhune/mrpipe")
 ```
 
-For rsid-chrpos correspondence, the 1000G xyz was used.
-The file for chromosome \${i} is "../chrpos/chr\${i}.Rds".
+For rsid-chrpos correspondence, the file for chromosome ${i} is "../chrpos/chr${i}.Rds".
 
 The outcome summary statistics sources are given in the manuscript, and are assumed to be located in folder "data/".
 
-The 1000G EUR correspondence downloaded from http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz, and the population-specific files are assumed to be located in folder "data/".
+The 1000G EUR correspondence was downloaded from http://fileserve.mrcieu.ac.uk/ld/1kg.v3.tgz, and the population-specific files are assumed to be located in folder "data/".
 
 The GTEx eQTL datasets are downloaded from:
-https://storage.googleapis.com/gtex_analysis_v8/multi_tissue_qtl_data/GTEx_Analysis_v8.metasoft.txt.gz and https://storage.googleapis.com/gtex_analysis_v8/reference/GTEx_Analysis_2017-06-05_v8_WholeGenomeSeq_838Indiv_Analysis_Freeze.lookup_table.txt.gz
+https://storage.googleapis.com/gtex_analysis_v8/multi_tissue_qtl_data/GTEx_Analysis_v8.metasoft.txt.gz and https://storage.googleapis.com/gtex_analysis_v8/reference/GTEx_Analysis_2017-06-05_v8_WholeGenomeSeq_838Indiv_Analysis_Freeze.lookup_table.txt.gz.
 
 
 # Workflow
+
+## Colocalization
 
 1. Colocalization
 
@@ -35,12 +36,13 @@ Rscript code/run_coloc_mahajan.R T2DMMahajan ${outcome} 19 46171502 46186982 0 G
 done
 ```
 
-2. Process colocalization and remove pleiotropic variants
+2. Process colocalization results and remove pleiotropic variants
 
 ```
 Rscript code/process_coloc_mahajan.R
 ```
 
+## Mendelian randomization
 
 3. Extract instruments for MR
 
@@ -65,7 +67,7 @@ Rscript code/mr_gip_gipr_combined.R
 code/collect_mr_results.R
 ```
 
-Sensitivity analysis I: HbA1c associations
+## Sensitivity analysis I: HbA1c associations
 
 7. Extract HbA1c associations
 ```
@@ -77,7 +79,7 @@ Rscript code/hba1c_associations.R
 Rscript code/mr_gip_gipr_hba1c.R
 ```
 
-Sensitivity analysis II: functionally relevant variants
+## Sensitivity analysis II: functionally relevant variants
 
 9. Look-up for missense variants:
 ```
@@ -108,6 +110,8 @@ done
 ```
 Rscript code/collect_mr_missense_eqtl_results.R
 ```
+
+## F-statistics and variant-outcome estimates
 
 14. Calculate F-statistics:
 ```
